@@ -226,3 +226,256 @@ g = JSON.parse(g, function (key, value) {
 });
 
 console.log(g); */
+
+/* _______________________________________ */
+/* class Node {
+  constructor(data, prev) {
+    this.data = data;
+    this.prev = prev;
+  }
+}
+
+class Stack {
+  constructor() {
+    this.last = null;
+  }
+
+  push(data) {
+    this.last = new Node(data, this.last);
+  }
+
+  pop() {
+    let result;
+    if (this.last !== null) {
+      result = this.last.data;
+      this.last = this.last.prev;
+    }
+    return result;
+  }
+}
+
+const stack = new Stack();
+console.log(stack);
+
+stack.push(100);
+stack.push(95);
+console.log(stack);
+
+console.log(stack.pop());
+console.log(stack.pop());
+console.log(stack.pop()); */
+
+/* ____________________________ */
+// let obj, met;
+
+// obj = {
+//   go() {
+//     console.log(this);
+//   },
+// };
+
+// obj.go();
+// obj.go();
+// (met = obj.go)();
+// (obj.go || obj.stop)();
+
+/* ______________________________ */
+
+// function makeU() {
+//   return {
+//     name: "Mia",
+//     ref: this,
+//   };
+// }
+
+// const user = makeU();
+// console.log(user.ref.name);
+
+// function makeU2() {
+//   return {
+//     name: "Mia",
+//     ref() {
+//       return this;
+//     },
+//   };
+// }
+
+// const user2 = makeU2();
+// console.log(user2.ref().name);
+
+/* ______________________________ */
+
+// const calculator = {
+//   read() {
+//     this.a = +prompt("a?", 0);
+//     this.b = +prompt("b?", 0);
+//   },
+
+//   sum() {
+//     return this.a + this.b;
+//   },
+
+//   mul() {
+//     return this.a * this.b;
+//   },
+// };
+
+// calculator.read();
+// console.log(calculator.sum());
+// console.log(calculator.mul());
+
+/* _______________________________ */
+
+// function sumTo(n) {
+//   let sum = 0;
+//   for (let i = n; i > 0; i--) {
+//     sum += i;
+//   }
+
+//   return sum;
+// }
+// console.log(sumTo(100));
+
+// function sumTo(n) {
+//   // let sum = n;
+//   // if (n === 0) {
+//   //   return sum;
+//   // } else {
+//   //   sum += sumTo(n - 1);
+//   // }
+//   // return sum;
+
+//   if (n === 0) return 0;
+//   return n + sumTo(n - 1);
+// }
+// console.log(sumTo(100));
+
+// function sumTo(n) {
+//   return (n * n + n) / 2;
+// }
+// console.log(sumTo(100));
+
+/* _______________________________ */
+
+// function fib(n) {
+//   let a = 1;
+//   let b = 1;
+//   for (let i = 3; i <= n; i++) {
+//     let c = a + b;
+//     a = b;
+//     b = c;
+//   }
+//   return b;
+// }
+
+// console.log(fib(77));
+
+/* _______________________________ */
+
+// let list = {
+//   value: 1,
+//   next: {
+//     value: 2,
+//     next: {
+//       value: 3,
+//       next: {
+//         value: 4,
+//         next: null,
+//       },
+//     },
+//   },
+// };
+
+// function PrintListRevers(list) {
+//   console.log(list.next);
+//   if (list.next) {
+//     PrintListRevers(list.next);
+//   }
+//   console.log(list.value);
+// }
+
+// PrintListRevers(list);
+
+/* _______________________________ */
+
+// function args({ a = 3, s = 5, d = 7 } = {}) {
+//   console.log(a, s, d);
+//   console.log(arguments);
+// }
+
+// args();
+
+/* _______________________________ */
+
+// let counter = 10;
+
+// function outer() {
+//   let counter = 0;
+
+//   return function inner() {
+//     console.log(counter++);
+//   };
+// }
+
+// const use = outer();
+
+// use();
+// use();
+// use();
+
+/* _______________________________ */
+
+// function outer() {
+//   let name = "Jules";
+
+//   return function () {
+//     console.log(name);
+//   };
+// }
+
+// let name = "Mia";
+
+// const use = outer();
+
+// use();
+
+/* _______________________________ */
+
+// function outer(n) {
+//   let sum = n;
+//   console.log(sum);
+
+//   function inner(m) {
+//     sum += m;
+//     console.log(sum);
+//     return inner;
+//   }
+
+//   return inner;
+// }
+
+// outer(50);
+// outer(50)(100)(200)(500);
+
+/* _______________________________ */
+
+// function outer(n) {
+//   n = parseInt(n) || 0;
+//   console.log(n);
+//   return (m) => outer(m + n);
+// }
+
+// outer(50);
+// outer(50)(100)(200)(500);
+// outer();
+// outer([]);
+
+/* _______________________________ */
+
+// function sum(x) {
+//   let f = (y) => sum(x + y);
+//   f.valueOf = () => x;
+//   return f;
+// }
+
+// console.log(sum(50)(100)(200)(500) + sum(50)(100));

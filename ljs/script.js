@@ -479,3 +479,130 @@ console.log(stack.pop()); */
 // }
 
 // console.log(sum(50)(100)(200)(500) + sum(50)(100));
+
+/* _______________________________ */
+
+// function inBetween(a, b) {
+//   return function (x) {
+//     return x >= a && x <= b;
+//   };
+// }
+
+// const arr = [3, 6, 7, 4, 3, 5, 7, 2, 8];
+// console.log(arr.filter(inBetween(5, 10)));
+
+/* _______________________________ */
+
+// function inArray(arr) {
+//   return function (x) {
+//     return arr.includes(x);
+//   };
+// }
+
+// const arr = [3, 6, 7, 4, 3, 5, 7, 2, 8];
+// console.log(arr.filter(inArray([5, 7])));
+
+/* _______________________________ */
+
+// function counterBig() {
+//   function counter() {
+//     return counter.count++;
+//   }
+
+//   counter.count = 0;
+
+//   return counter;
+// }
+
+// const counterFunc = counterBig();
+
+// console.log(counterFunc());
+// console.log(counterFunc());
+// counterFunc.count = 100;
+// console.log(counterFunc());
+// console.log(counterFunc());
+
+/* _______________________________ */
+
+// function sum(a) {
+//   let curr = a;
+//   function f(b) {
+//     curr += b;
+//     return f;
+//   }
+
+//   f.toString = function () {
+//     return curr;
+//   };
+
+//   return f;
+// }
+
+// console.log(sum(1)(2));
+
+/* ___________FizzBuzz___________ */
+// const gen = function (n, word) {
+//   return function (i) {
+//     return i % n === 0 ? word : "";
+//   };
+// };
+
+/*  or  */
+
+// const gen = (n, word) => (i) => (i % n === 0 ? word : "");
+
+// const fizz = gen(3, "Fizz");
+// const buzz = gen(5, "Buzz");
+
+// [...Array(99).keys()]
+//   .map((i) => i + 1)
+//   .forEach((i) => console.log(fizz(i) + buzz(i) || i));
+
+/* _______________________________ */
+
+// function printNumbers(from, to) {
+//   let curr = from;
+
+//   setTimeout(function go() {
+//     console.log(curr);
+
+//     if (curr < to) {
+//       setTimeout(go, 1000);
+//     }
+//     curr++;
+//   }, 1000);
+// }
+
+// printNumbers(2, 8);
+
+/* _______________________________ */
+
+// function printNumbers(from, to) {
+//   let curr = from;
+
+//   const interval = setInterval(function go() {
+//     console.log(curr);
+
+//     if (curr === to) {
+//       clearInterval(interval);
+//     }
+//     curr++;
+//   }, 1000);
+// }
+
+// printNumbers(2, 8);
+
+/* _______________________________ */
+
+// function sayHi(word) {
+//   console.log(`${this.name} ${word || ""}`);
+// }
+
+// let user = { name: "Fella" };
+// let admin = { name: "Mia" };
+
+// sayHi.call(user);
+// sayHi.call(admin);
+// sayHi.call(admin, "Boom");
+
+/* _______________________________ */

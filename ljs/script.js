@@ -605,4 +605,226 @@ console.log(stack.pop()); */
 // sayHi.call(admin);
 // sayHi.call(admin, "Boom");
 
+/* ________call apply decorators_______________________ */
+
+// const worker = {
+//   smthDo() {
+//     return 5;
+//   },
+
+//   salaryCalc(x) {
+//     return x * this.smthDo();
+//   },
+// };
+
+// function wrapper(func) {
+//   let budget = new Map();
+
+//   return function (x) {
+//     if (budget.has(x)) {
+//       return budget.get(x);
+//     }
+
+//     let result = func.call(this, x);
+//     budget.set(x, result);
+//     return result;
+//   };
+// }
+
+// worker.salaryCalc = wrapper(worker.salaryCalc);
+
+// console.log(worker.salaryCalc(100));
+// console.log(worker.salaryCalc(200));
+
+/* _______________________________ */
+
+// const worker = {
+//   salaryCalc(min, max) {
+//     return min / max;
+//   },
+// };
+
+// function wrapper(func, hashKey) {
+//   let budget = new Map();
+
+//   return function () {
+//     let key = hashKey(arguments);
+//     if (budget.has(key)) {
+//       return budget.get(key);
+//     }
+
+//     let result = func.apply(this, arguments);
+//     budget.set(key, result);
+//     console.log(budget);
+//     return result;
+//   };
+// }
+
+// function hashKey() {
+//   return [].join.call(...arguments);
+// }
+
+// worker.salaryCalc = wrapper(worker.salaryCalc, hashKey);
+
+// console.log(worker.salaryCalc(100, 200));
+// console.log(worker.salaryCalc(200, 250));
+
+/* _______________________________ */
+
+// function work(a, b) {
+//   return a + b;
+// }
+
+// function spy(func) {
+//   function inner(...args) {
+//     inner.calls.push(args);
+//     return func(...args);
+//   }
+
+//   inner.calls = [];
+//   return inner;
+// }
+
+// work = spy(work);
+
+// console.log(work(3, 5));
+// console.log(work(5, 5));
+// console.log(work(5, 10));
+
+// for (let arg of work.calls) {
+//   console.log(arg.join());
+// }
+
+/* _______________________________ */
+
+// function f(...args) {
+//   console.log(args[0] + args[1]);
+// }
+
+// function delay(func, ms) {
+//   return function () {
+//     setTimeout(() => {
+//       func.apply(this, arguments);
+//     }, ms);
+//   };
+// }
+
+// let f1000 = delay(f, 1000);
+// console.log(f1000);
+
+// f1000(3, 5);
+
+/* _______________________________ */
+
+// function debounce(func, ms) {
+//   let state = false;
+
+//   return function inner() {
+//     if (state) return;
+//     func.apply(this, arguments);
+
+//     state = true;
+
+//     setTimeout(() => (state = false), ms);
+//   };
+// }
+
+// let f = debounce(console.log, 1000);
+
+// f(1);
+// f(2);
+
+// setTimeout(() => f(2.5), 990);
+// setTimeout(() => f(3), 1200);
+
+/* _______________________________ */
+
+// function f(a) {
+//   console.log(a);
+// }
+
+// function trottle(func, ms) {
+//   let state = false,
+//     savedArgs,
+//     savedThis;
+
+//   function inner() {
+//     if (state) {
+//       savedArgs = arguments;
+//       savedThis = this;
+//       return;
+//     }
+
+//     func.apply(this, arguments);
+//     state = true;
+
+//     setTimeout(function () {
+//       state = false;
+//       if (savedArgs) {
+//         inner.apply(savedThis, savedArgs);
+//         savedArgs = savedThis = null;
+//       }
+//     }, ms);
+//   }
+
+//   return inner;
+// }
+
+// let f1000 = trottle(f, 1000);
+
+// f1000(1);
+// f1000(2);
+// f1000("last");
+
+/* _______________________________ */
+
+// function Product(name, price) {
+//   this.name = name;
+//   this.price = price;
+// }
+
+// function Food(name, price) {
+//   Product.call(this, name, price);
+//   this.category = "food";
+// }
+
+// const item = new Food("cheese", 15);
+
+// console.log(item);
+
+/* _______________________________ */
+
+// const animals = [
+//   { spec: "Lion", name: "King" },
+//   { spec: "Whale", name: "Fail" },
+// ];
+
+// for (let i = 0; i < animals.length; i++) {
+//   (function (i) {
+//     this.print = function () {
+//       console.log(`# ${i} ${this.spec}: ${this.name}`);
+//     };
+//     this.print();
+//   }.call(animals[i], i));
+// }
+
+/* _______________________________ */
+
+// const personMethod = {
+//   hello() {
+//     console.log("hello", this);
+//   },
+// };
+
+// const person = {
+//   name: "Olex",
+//   city: "Poznan",
+//   origin: "Herson",
+//   sayHello() {
+//     personMethod.hello.call(this);
+//   },
+// };
+
+// person.sayHello();
+
 /* _______________________________ */

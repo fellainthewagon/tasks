@@ -828,3 +828,207 @@ console.log(stack.pop()); */
 // person.sayHello();
 
 /* _______________________________ */
+
+// function sayHi(x) {
+//   console.log(x);
+// }
+
+// function defer(f, ms) {
+//   return function () {
+//     setTimeout(() => f.apply(this, arguments), ms);
+//   };
+// }
+
+// const boom = defer(sayHi, 1000);
+// boom("hi");
+
+/* _______________________________ */
+
+// const user = {
+//   name: "fella",
+//   car: false,
+// };
+
+// let descriptor = Object.getOwnPropertyDescriptor(user, "name");
+// console.log(descriptor);
+
+// Object.defineProperty(user, "car", { writable: false });
+// user.car = true;
+
+/* _______________________________ */
+
+// const student = {
+//   name: "fella",
+//   age: 30,
+//   car: false,
+// };
+
+// let clone = Object.defineProperties(
+//   {},
+//   Object.getOwnPropertyDescriptors(student)
+// );
+
+// console.log(clone);
+
+// clone.name = "Fellainthewagon";
+
+// console.log(clone);
+// console.log(student);
+
+/* _______________________________ */
+
+// let user = {
+//   name: "Mia",
+//   surname: "Walles",
+
+//   get fullName() {
+//     return `${this.name} ${this.surname}`;
+//   },
+
+//   set fullName(value) {
+//     [this.name, this.surname] = value.split(" ");
+//   },
+// };
+
+// console.log(user);
+// console.log(user.fullName);
+// user.fullName = "Vincent Vega";
+
+/* _______________________________ */
+
+// const user = {
+//   get name() {
+//     return this._name;
+//   },
+
+//   set name(value) {
+//     if (value.length < 5) {
+//       console.log("Слишком короткое имя!");
+//       return;
+//     }
+
+//     this._name = value;
+//   },
+// };
+
+// user.name = "Mia";
+// user.name = "Vincent";
+// console.log(user);
+
+/* _______________________________ */
+
+// function User(name, birthday) {
+//   this.name = name;
+//   this.birthday = birthday;
+
+//   Object.defineProperty(this, "age", {
+//     get() {
+//       let todayYear = new Date().getFullYear();
+//       return todayYear - this.birthday.getFullYear();
+//     },
+//   });
+// }
+
+// let john = new User("John", new Date(1992, 6, 1));
+// console.log(john.birthday);
+// console.log(john.age);
+// console.log(john);
+
+/* _______________________________ */
+
+// const user = {
+//   get firstName() {
+//     return this._name;
+//   },
+
+//   set firstName(value) {
+//     this._name = value;
+//   },
+// };
+
+// user.firstName = "Mia";
+
+// console.log(user);
+
+/* ___________proto__________________ */
+
+// const animal = {
+//   eats: true,
+//   walk() {
+//     console.log("top-top");
+//   },
+// };
+
+// const dog = {
+//   __proto__: animal,
+// };
+
+// dog.walk();
+
+// dog.walk = function () {
+//   console.log("dog-top");
+// };
+
+// dog.walk();
+
+/* _______________________________ */
+
+// const animal = {
+//   walk() {
+//     if (!this.isSleeping) {
+//       console.log("I walk");
+//     }
+//   },
+//   sleep() {
+//     this.isSleeping = true;
+//   },
+// };
+
+// const cat = {
+//   name: "Kimbo",
+//   __proto__: animal,
+// };
+
+// cat.sleep();
+// console.log(cat);
+// for (let prop in cat) console.log(prop);
+
+// for (let prop in cat) {
+//   if (cat.hasOwnProperty(prop)) {
+//     console.log(`My propery ${prop}`);
+//   }
+//   console.log(`Inherited property ${prop}`);
+// }
+
+/* _______________________________ */
+
+// function Rabbit(name) {
+//   this.name = name;
+// }
+
+// const rabbit = new Rabbit("Rodger");
+// console.log(rabbit);
+// const rabbit2 = new rabbit.constructor("Magic");
+// console.log(rabbit2);
+
+/* _______________________________ */
+
+function Cat() {}
+Cat.prototype = {
+  eats: true,
+};
+
+let cat = new Cat();
+console.log(cat);
+
+// Cat.prototype = {};
+// console.log(cat.eats);
+
+// Cat.prototype.eats = false;
+// console.log(cat.eats);
+
+// delete cat.eats;
+// console.log(cat.eats);
+
+delete Cat.prototype.eats;
+console.log(cat.eats);

@@ -1013,7 +1013,7 @@ console.log(stack.pop()); */
 
 /* _______________________________ */
 
-function Cat() {}
+/* function Cat() {}
 Cat.prototype = {
   eats: true,
 };
@@ -1031,4 +1031,148 @@ console.log(cat);
 // console.log(cat.eats);
 
 delete Cat.prototype.eats;
-console.log(cat.eats);
+console.log(cat.eats); */
+
+/* _______________________________ */
+
+// const obj = new Object();
+// console.log(obj);
+// console.log(obj.__proto__ === Object.prototype);
+
+/* _______________________________ */
+
+// Function.prototype.defer = function (ms) {
+//   setTimeout(this, ms);
+// };
+
+// function f() {
+//   console.log("Hey, buddy!");
+// }
+
+// f.defer(1000);
+
+/* _______________________________ */
+
+/* apply*/
+
+// Function.prototype.defer = function (ms) {
+//   let func = this;
+
+//   return function (...arg) {
+//     // setTimeout(() => func.apply(this, arguments), ms);
+//     setTimeout(() => func(...arg), ms);
+//   };
+// };
+
+/* bind*/
+
+// Function.prototype.defer = function (ms) {
+//   return function () {
+//     setTimeout(() => this(...arguments), ms);
+//   }.bind(this);
+// };
+
+// function f(a, b, c) {
+//   console.log(a + b + c);
+// }
+
+// f.defer(1000)(1, 2, 5);
+
+/* _______________________________ */
+
+// let animal = {
+//   eats: true,
+// };
+
+// let rabbit = Object.create(animal);
+
+// console.log(rabbit.eats);
+
+// console.log(Object.getPrototypeOf(rabbit) === animal);
+
+// Object.setPrototypeOf(rabbit, {});
+
+// console.log(rabbit.eats);
+
+// let cat = Object.create(animal, {
+//   speak: {
+//     value: "Mew",
+//   },
+// });
+
+// console.log(cat.eats, cat.speak);
+
+/* _______________________________ */
+
+// const human = {
+//   legs: 2,
+//   head: true,
+// };
+
+// const woman = Object.create(
+//   Object.getPrototypeOf(human),
+//   Object.getOwnPropertyDescriptors(human)
+// );
+
+// console.log(woman.legs);
+
+/* _______________________________ */
+
+// let obj = Object.create(null);
+// let key = "__proto__";
+
+// obj[key] = "boom";
+// console.log(obj[key]);
+
+// console.log(Object.getOwnPropertyNames(obj));
+
+/* _______________________________ */
+
+// const dictionary = Object.create(null, {
+//   toString: {
+//     value() {
+//       return Object.keys(this).join();
+//     },
+//   },
+// });
+
+// dictionary.apple = "apple";
+// dictionary.__proto__ = "protein";
+
+// for (let key in dictionary) {
+//   console.log(key);
+// }
+
+/* _______________________________ */
+
+// function Dog(name) {
+//   this.name = name;
+// }
+
+// Dog.prototype.sayUf = function () {
+//   console.log("Uff-Uff");
+// };
+
+// const dog = new Dog("Zhopkins");
+
+// dog.sayUf();
+
+// console.log(dog);
+// console.log(Object.getPrototypeOf(dog));
+
+/* _______________________________ */
+
+const parent = {
+  name: "Mia",
+  children: {
+    son: "Vincent",
+    doughter: "Elis",
+  },
+};
+
+let clone = Object.create(
+  Object.getPrototypeOf(parent),
+  Object.getOwnPropertyDescriptors(parent)
+);
+
+console.log(clone);

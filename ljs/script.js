@@ -1162,17 +1162,143 @@ console.log(cat.eats); */
 
 /* _______________________________ */
 
-const parent = {
-  name: "Mia",
-  children: {
-    son: "Vincent",
-    doughter: "Elis",
-  },
-};
+// const parent = {
+//   name: "Mia",
+//   children: {
+//     son: "Vincent",
+//     doughter: "Elis",
+//   },
+// };
 
-let clone = Object.create(
-  Object.getPrototypeOf(parent),
-  Object.getOwnPropertyDescriptors(parent)
-);
+// let clone = Object.create(
+//   Object.getPrototypeOf(parent),
+//   Object.getOwnPropertyDescriptors(parent)
+// );
 
-console.log(clone);
+// console.log(clone);
+
+/* _______________________________ */
+
+// function User() {
+//   let username, password;
+
+//   function doLogin(un, pw) {
+//     username = un;
+//     password = pw;
+//   }
+
+//   const publicAPI = {
+//     login: doLogin,
+//   };
+
+//   return publicAPI;
+// }
+
+// const vincent = User();
+
+// vincent.login("Vincent", "Vega");
+// console.log(vincent);
+
+/* _______________________________ */
+
+// function foo() {
+//   let a = "boom";
+
+//   function inner() {
+//     console.log(a);
+//   }
+
+//   start(inner);
+// }
+
+// function start(fn) {
+//   fn();
+// }
+
+// foo();
+
+/* _______________________________ */
+
+// function wait(mess) {
+//   setTimeout(function () {
+//     console.log(mess);
+//   }, 1000);
+// }
+
+// wait("boom");
+
+/* _______________________________ */
+
+// for (let i = 1; i <= 8; i++) {
+//   setTimeout(function timer() {
+//     console.log(i);
+//   }, i * 1000);
+// }
+
+/* _______________________________ */
+
+// function CoolModule() {
+//   const apple = "Apple";
+//   const banana = "Banana";
+
+//   function doApple() {
+//     console.log(apple);
+//   }
+//   function doBanana() {
+//     console.log(banana);
+//   }
+
+//   return {
+//     doApple,
+//     doBanana,
+//   };
+// }
+
+// const fruits = CoolModule();
+
+// fruits.doApple();
+// fruits.doBanana();
+
+/* _______________________________ */
+
+// const foo = (function (id) {
+//   function change() {
+//     obj.method = methodUpper;
+//   }
+//   function methodLower() {
+//     console.log(id.toLowerCase());
+//   }
+//   function methodUpper() {
+//     console.log(id.toUpperCase());
+//   }
+
+//   let obj = {
+//     method: methodLower,
+//     change: change,
+//   };
+
+//   return obj;
+// })("fella in the wagon");
+
+// foo.method();
+// foo.change();
+// foo.method();
+
+/* _______________________________ */
+
+// const obj = {
+//   id: "awesome",
+//   cool: function () {
+//     console.log(this.id);
+//   },
+// };
+
+// const id = "not awesome";
+
+// obj.cool();
+
+// setTimeout(() => {
+//   obj.cool();
+// }, 1000);
+
+/* _______________________________ */

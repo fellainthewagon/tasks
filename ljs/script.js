@@ -1302,3 +1302,169 @@ console.log(cat.eats); */
 // }, 1000);
 
 /* _______________________________ */
+
+// function foo(item) {
+//   console.log(this.a + item);
+// }
+
+// const obj = {
+//   a: 75,
+// };
+
+// const geezz = function () {
+//   return foo.apply(obj, arguments);
+// };
+
+// const result = geezz(25);
+
+/* _______________________________ */
+
+// function foo(param) {
+//   console.log(this.a + param);
+// }
+
+// const objectA = {
+//   a: 47,
+// };
+
+// function boo(num) {
+//   return this.a / num;
+// }
+
+// objectB = {
+//   a: 99,
+// };
+
+// function bind(fn, obj) {
+//   return function () {
+//     return fn.apply(obj, arguments);
+//   };
+// }
+
+// const boom = bind(foo, objectA);
+// const doom = bind(boo, objectB);
+
+// boom(53);
+// console.log(doom(3));
+
+/* _______________________________ */
+
+// const obj = {};
+// const obj2 = Object.create(null);
+
+// console.log(obj, obj2);
+
+// function foo(a, b) {
+//   console.log(`a: ${a}, b: ${b}`);
+// }
+
+// const ø = Object.create(null);
+
+// const bar = foo.bind(ø, 2);
+
+// bar(3);
+
+/* _______________________________ */
+
+// function foo() {
+//   console.log(this.a);
+// }
+
+// const a = 2;
+// const b = { a: 3, foo };
+// const c = { a: 4 };
+
+// b.foo();
+// (c.foo = b.foo)();
+// c.foo();
+
+/* _______________________________ */
+
+// function foo() {
+//   return () => {
+//     console.log(this.a);
+//   };
+// }
+
+// const obj = { a: 2 };
+// const obj2 = { a: 3 };
+
+// const bar = foo.call(obj);
+// bar();
+// bar.call(obj2);
+
+/* ___________fuctorial____________________ */
+
+// function factorial(n) {
+//   if (Number.isInteger(n) && n > 0) {
+//     if (!(n in factorial)) {
+//       return (factorial[n] = n * factorial(n - 1));
+//     }
+//     return factorial[n];
+//   } else {
+//     return NaN;
+//   }
+// }
+
+// factorial[1] = 1;
+// console.log(factorial(7));
+// console.log(factorial(5));
+
+/* _______________________________ */
+
+// const myObj = {
+//   cool: 79,
+// };
+
+// console.log(Object.getOwnPropertyDescriptor(myObj, "cool"));
+
+// Object.defineProperty(myObj, "hi", {
+//   value: "Giga",
+//   writable: false,
+//   configurable: true,
+//   enumerable: true,
+// });
+
+// console.log(myObj);
+// myObj.hi = "Mega";
+// console.log(myObj.hi);
+// Object.preventExtensions(myObj);
+// myObj.bye = "bye";
+// console.log(myObj);
+
+/* _______________________________ */
+
+// const qwe = {
+//   get a() {
+//     return 33;
+//   },
+// };
+
+// Object.defineProperty(qwe, "b", {
+//   get: function () {
+//     return this.a * 3;
+//   },
+//   enumerable: true,
+// });
+
+// qwe.a = 11;
+
+// console.log(qwe.a);
+// console.log(qwe.b);
+
+/* _______________________________ */
+
+// const obj = {
+//   get a() {
+//     return this._a;
+//   },
+//   set a(val) {
+//     this._a = val * 3;
+//   },
+// };
+
+// obj.a = 33;
+// console.log(obj.a);
+// console.log("b" in obj);
+
+/* _______________________________ */

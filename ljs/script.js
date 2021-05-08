@@ -1467,4 +1467,297 @@ console.log(cat.eats); */
 // console.log(obj.a);
 // console.log("b" in obj);
 
+/* _____________Symbol.iterator__________________ */
+
+// const qwe = {
+//   aaa: 55,
+//   bbb: "grom",
+// };
+
+// Object.defineProperty(qwe, Symbol.iterator, {
+//   writable: false,
+//   enumerable: false,
+//   configurable: true,
+//   value: function () {
+//     let that = this;
+//     let idx = 0;
+//     let key = Object.keys(that);
+//     return {
+//       next: function () {
+//         return {
+//           value: that[key[idx++]],
+//           done: idx > key.length,
+//         };
+//       },
+//     };
+//   },
+// });
+
+// const iterator = qwe[Symbol.iterator]();
+
+// console.log(iterator.next());
+// console.log(iterator.next());
+// console.log(iterator.next());
+
+// for (let value of qwe) {
+//   console.log(value);
+// }
+
+/* _______________________________ */
+
+// function not(func) {
+//   return function (...arg) {
+//     let result = func.apply(this, arg);
+//     return !result;
+//   };
+// }
+
+// const even = (x) => x % 2 === 0;
+
+// const result = not(even);
+
+// console.log([7, 5, 9, 367].every(result));
+
+/* _______________________________ */
+
+// function wrapper(func) {
+//   return function (arr) {
+//     let result = arr.map(func);
+//     return result;
+//   };
+// }
+
+// const mult = (x) => x * 10;
+
+// const x10 = wrapper(mult);
+
+// console.log(x10([1, 2, 3, 6, 7, 8]));
+
+/* _______________________________ */
+
+// function Vehicle() {
+//   this.engines = 1;
+// }
+
+// Vehicle.prototype.ignition = function () {
+//   console.log("1");
+// };
+
+// Vehicle.prototype.drive = function () {
+//   this.ignition();
+//   console.log("2");
+// };
+
+// function Car() {
+//   const car = new Vehicle();
+//   // console.log(car);
+
+//   car.wheels = 4;
+
+//   const vehicleDrive = car.drive;
+
+//   car.drive = function () {
+//     vehicleDrive.call(this);
+//     console.log("3!");
+//   };
+
+//   return car;
+// }
+
+// const myCar = Car();
+
+// console.log(myCar);
+
+/* _______________________________ */
+
+// const Smth = {
+//   cool: function () {
+//     this.greeting = "Hi, Fella";
+//     this.count = this.count ? this.count + 1 : 1;
+//   },
+// };
+
+// Smth.cool();
+// console.log(Smth.greeting, Smth.count);
+// Smth.cool();
+// Smth.cool();
+// console.log(Smth.count);
+
+// const Anth = {
+//   cool: function () {
+//     Smth.cool.call(this);
+//   },
+// };
+
+// Anth.cool();
+// console.log(Anth.greeting, Anth.count);
+
+/* _______________________________ */
+
+// const one = {
+//   boo() {
+//     console.log("one boo");
+//   },
+// };
+
+// Object.defineProperty(one, "foo", {
+//   value() {
+//     console.log("one foo");
+//   },
+//   writable: false,
+//   configurable: true,
+//   enumerable: true,
+// });
+// console.log(one);
+
+// const two = Object.create(one);
+// two.boo = function () {
+//   console.log("two boo");
+// };
+
+// two.boo();
+// console.log(two);
+// two.foo = function () {
+//   console.log("two foo");
+// };
+// two.foo();
+// console.log(two.hasOwnProperty("foo"));
+
+/* _______________________________ */
+
+// function Foo() {}
+
+// const foo = new Foo();
+
+// console.log(foo, Object.getPrototypeOf(foo) === Foo.prototype);
+// console.log(foo.constructor === Foo);
+
+/* _______________________________ */
+
+// function One(name) {
+//   this.name = name;
+// }
+
+// One.prototype.sayName = function () {
+//   console.log(`My name is ${this.name}`);
+// };
+
+// const a = new One("A-func");
+// const b = new One("B-func");
+// a.sayName();
+// b.sayName();
+
+// One.prototype = {
+//   /* .. */
+// };
+// const c = new One("C-func");
+// console.log(c, c.constructor === Object);
+
+/* _______________________________ */
+
+// function One(name) {
+//   this.name = name;
+// }
+
+// One.prototype.sayName = function () {
+//   console.log(`my name is ${this.name}`);
+// };
+
+// function Two(name, id) {
+//   One.call(this, name);
+//   this.id = id;
+// }
+
+// /* ES 5 */
+// // Two.prototype = Object.create(One.prototype);
+
+// /* ES 6 */
+// Object.setPrototypeOf(Two.prototype, One.prototype);
+
+// Two.prototype.sayId = function () {
+//   console.log(`my id is ${this.id}`);
+// };
+
+// const a = new Two("Mia", 666);
+
+// a.sayName();
+// a.sayId();
+// console.log(a);
+
+// const b = new One("Vincent");
+// console.log(b);
+// console.log(a.__proto__ === Two.prototype);
+
+/* _______________________________ */
+
+// const qwe = {
+//   a: "one",
+// };
+
+// const asd = Object.create(qwe, {
+//   b: {
+//     writable: true,
+//     enumerable: false,
+//     configurable: false,
+//     value: "two",
+//   },
+//   c: {
+//     writable: false,
+//     enumerable: true,
+//     configurable: false,
+//     value: "three",
+//   },
+// });
+
+// for (let val in asd) {
+//   console.log(val);
+// }
+
+/* _______________________________ */
+
+// const qwe = {
+//   mew: function () {
+//     console.log("meeeeew");
+//   },
+// };
+
+// const asd = Object.create(qwe);
+
+// asd.doMew = function () {
+//   this.mew();
+// };
+
+// asd.doMew();
+// console.log(asd, asd.hasOwnProperty("doMew"));
+
+/* ____________OLOO___________________ */
+
+// const Parent = {
+//   setID(ID) {
+//     this.id = ID;
+//   },
+
+//   outputID() {
+//     console.log(this.id);
+//   },
+// };
+
+// const Son = Object.create(Parent);
+// console.log(Son);
+
+// Son.setProp = function (ID, title) {
+//   this.setID(ID);
+//   this.title = title;
+// };
+
+// Son.outputProp = function () {
+//   this.outputID(this.id);
+//   console.log(this.title);
+// };
+
+// Son.setProp(2021, "Grammy");
+// Son.outputProp();
+
+// console.log(Son);
+
 /* _______________________________ */

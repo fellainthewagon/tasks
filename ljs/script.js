@@ -1760,4 +1760,195 @@ console.log(cat.eats); */
 
 // console.log(Son);
 
+/* ___________Object.assign() upgrade____________________ */
+
+// function merge(target, ...sources) {
+//   for (let source of sources) {
+//     for (let key of Object.keys(source)) {
+//       if (!(key in target)) {
+//         target[key] = source[key];
+//       }
+//     }
+//   }
+//   return target;
+// }
+
+// const result = merge({ x: 5 }, { x: 8, y: 10 }, { y: 20, z: 90, x: 100 });
+// console.log(result);
+
+/* _______________________________ */
+
+// class Clock {
+//   constructor({ temp }) {
+//     this.temp = temp;
+//   }
+
+//   render() {
+//     let date = new Date();
+
+//     let hours = date.getHours();
+//     if (hours < 10) hours = "0" + hours;
+
+//     let mins = date.getMinutes();
+//     if (mins < 10) mins = "0" + mins;
+
+//     let secs = date.getSeconds();
+//     if (secs < 10) secs = "0" + secs;
+
+//     let output = this.temp
+//       .replace("h", hours)
+//       .replace("m", mins)
+//       .replace("s", secs);
+
+//     console.log(output);
+//   }
+
+//   start() {
+//     this.render();
+//     this.timer = setInterval(() => this.render(), 1000);
+//   }
+
+//   stop() {
+//     clearInterval(this.timer);
+//   }
+// }
+
+// const myClock = new Clock({ temp: "h:m:s" });
+// console.log(myClock);
+// myClock.start();
+// myClock.stop();
+
+/* _______________________________ */
+
+// class Name {
+//   constructor(name) {
+//     this.name = name;
+//   }
+
+//   get name() {
+//     return this._name;
+//   }
+
+//   set name(value) {
+//     this._name = value;
+//   }
+// }
+
+// const myName = new Name("Fella");
+
+// console.log(myName.name);
+
+// myName.name = "Vincent";
+// console.log(myName.name);
+// console.log(myName);
+
+/* _______________________________ */
+
+// class CoffeeMachine {
+//   _waterAmount = 0;
+
+//   constructor(power) {
+//     this._power = power;
+//     console.log(`Кофеварка создана мощность: ${power}W`);
+//   }
+
+//   get power() {
+//     return this._power;
+//   }
+
+//   setWaterAmount(value) {
+//     if (value < 0) throw new Error("Отрицательльное количество воды!");
+//     this._waterAmount = value;
+//   }
+
+//   getWaterAmount() {
+//     console.log(this._waterAmount);
+//   }
+// }
+
+// const myCoffeeM = new CoffeeMachine(1800);
+
+// myCoffeeM.waterAmount = 200;
+// myCoffeeM.power = 25;
+// myCoffeeM.waterAmount = 500;
+// console.log(myCoffeeM);
+
+/* _______________________________ */
+
+// class CoffeeMachine {
+//   #waterAmount = 0;
+
+//   get waterAmount() {
+//     return this.#waterAmount;
+//   }
+
+//   set waterAmount(value) {
+//     if (value < 0) throw new Error("Отрицательльное количество воды!");
+//     this.#waterAmount = value;
+//   }
+// }
+
+// const myCMachine = new CoffeeMachine();
+
+// myCMachine.waterAmount = 200;
+// // console.log(myCMachine.#waterAmount);
+
+// class MegaCoffeeMachine extends CoffeeMachine {
+//   method() {
+//     console.log(this.#waterAmount);
+//   }
+// }
+
+/* _______________________________ */
+
+// class PowerArray extends Array {
+//   isEmpty() {
+//     return this.length === 0;
+//   }
+// }
+
+// const arr = new PowerArray(2, 34, 56, 34, 5, 1, 90);
+// let filtered = arr.filter((i) => i > 100);
+
+// console.log(filtered.isEmpty());
+// console.log(filtered);
+
+// console.log(Date.__proto__ === Function.prototype);
+// console.log(Array.__proto__ === Function.prototype);
+// console.log(Object.__proto__ === Function.prototype);
+
+/* ___________mixin____________________ */
+
+// const sayMixin = {
+//   say(phrase) {
+//     console.log(phrase);
+//   },
+// };
+
+// const saySuperMixin = {
+//   // __proto__: sayMixin,
+//   __proto__: Object.create(sayMixin),
+
+//   sayHi() {
+//     super.say(`Hi, ${this.name}`);
+//   },
+
+//   sayBye() {
+//     super.say(`Bye, ${this.name}`);
+//   },
+// };
+
+// class User {
+//   constructor(name) {
+//     this.name = name;
+//   }
+// }
+
+// Object.assign(User.prototype, saySuperMixin);
+
+// const user1 = new User("Fella");
+// console.log(user1);
+
+// user1.sayHi();
+
 /* _______________________________ */

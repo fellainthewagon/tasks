@@ -1952,3 +1952,227 @@ console.log(cat.eats); */
 // user1.sayHi();
 
 /* _______________________________ */
+
+// class F {
+//   id = 0;
+
+//   constructor(name) {
+//     this.name = name;
+//   }
+
+//   static sayId() {
+//     return id;
+//   }
+
+//   sayName() {
+//     return this.name;
+//   }
+// }
+
+// const exemplar = new F("Mia");
+// console.log(exemplar, F.prototype.constructor);
+// console.log(exemplar.__proto__ === F.prototype);
+// console.log(F.__proto__ === Function.prototype);
+
+// function Hi(v) {
+//   return "Hi " + v;
+// }
+
+// console.log(Hi.__proto__ === Function.prototype);
+
+/* _______________________________ */
+
+// class Complex {
+//   constructor(real, imaginary) {
+//     this.r = real;
+//     this.i = imaginary;
+//   }
+
+//   plus(that) {
+//     return new Complex(this.r + that.r, this.i + that.i);
+//   }
+
+//   times(that) {
+//     return new Complex(
+//       this.r * that.r - this.i * that.i,
+//       this.r * that.i + this.i * that.r
+//     );
+//   }
+
+//   static sum(c, d) {
+//     return c.plus(d);
+//   }
+
+//   static product(c, d) {
+//     return c.times(d);
+//   }
+
+//   get real() {
+//     return this.r;
+//   }
+
+//   get imaginary() {
+//     return this.i;
+//   }
+
+//   get magnitude() {
+//     return Math.hypot(this.r, this.i);
+//   }
+
+//   toString() {
+//     return `{${this.r}, ${this.i}}`;
+//   }
+
+//   equals(that) {
+//     return that instanceof Complex && this.r === that.r && this.i === that.i;
+//   }
+
+//   static ZERO = new Complex(0, 0);
+// }
+
+// let c = new Complex(2, 3);
+// let d = new Complex(5, 10);
+// console.log(d);
+
+// console.log(c.toString());
+// console.log(c.plus(d).toString());
+// console.log(c.times(d));
+// console.log(Complex.product(c, d));
+
+/* _______________________________ */
+
+// class MyError extends Error {
+//   constructor(message) {
+//     super(message);
+//     this.name = this.constructor.name;
+//   }
+// }
+// class ValidationError extends MyError {
+//   constructor(message) {
+//     super(message);
+//   }
+// }
+
+// class PropertyRequiredError extends ValidationError {
+//   constructor(prop) {
+//     super("Нет свойства " + prop);
+//     this.property = prop;
+//   }
+// }
+
+// function readUser(json) {
+//   let user = JSON.parse(json);
+
+//   if (!user.name) {
+//     throw new PropertyRequiredError("name!");
+//   }
+
+//   if (!user.age) {
+//     throw new PropertyRequiredError("age!");
+//   }
+
+//   return user;
+// }
+
+// try {
+//   let user = readUser('{"age": 31}');
+// } catch (err) {
+//   if (err instanceof ValidationError) {
+//     console.log("Некорректные данные: " + err.message);
+//     console.log(err.name);
+//     console.log(err.property);
+//   } else if (err instanceof SyntaxError) {
+//     console.log("JSON Ошибка синтаксиса: " + err.message);
+//   } else {
+//     throw err;
+//   }
+// }
+
+/* _______________________________ */
+
+// let promise = new Promise(function (resolve, reject) {
+//   setTimeout(() => resolve("done"), 1000);
+// });
+
+// // console.log(promise);
+// promise.then(
+//   (result) => console.log(result),
+//   (error) => console.log(error)
+// );
+
+/* _______________________________ */
+
+// function delay(ms) {
+//   return new Promise(function (resolve, reject) {
+//     return setTimeout(resolve, ms);
+//   });
+// }
+
+// delay(3000).then(() => console.log("Booom!"));
+
+/* _______________________________ */
+
+// class Thenable {
+//   constructor(num) {
+//     this.num = num;
+//   }
+
+//   then(resolve, reject) {
+//     console.log(resolve);
+
+//     setTimeout(() => resolve(this.num * 10), 1000);
+//   }
+// }
+
+// new Promise(function (resolve) {
+//   setTimeout(() => resolve(10), 1000);
+// })
+//   .then((result) => new Thenable(result))
+//   .then((result) => console.log(result));
+
+/* _______________________________ */
+
+// fetch("https://jsonplaceholder.typicode.com/users/1")
+//   .then((response) => response.json())
+//   .then((user) => console.log(user.address.city));
+
+/* _______________________________ */
+
+// new Promise(function (resolve, reject) {
+//   setTimeout(() => {
+//     /* throw new Error("So sad..."); */
+//     reject(new Error("So sad..."));
+//   }, 1000);
+// }).catch(alert /* (err) => console.log(err) */);
+
+/* _______________________________ */
+
+// let promise = new Promise((resolve, reject) => reject(new Error(":(")));
+// console.log(promise);
+// let rejected = Promise.resolve(promise);
+// rejected.then((result) => console.log(result)).catch((err) => console.log(err));
+
+/* _______________________________ */
+
+// let loadScriptPromise = function (src) {
+//   return new Promise((resolve, reject) => {
+//     loadScript(src, (err, script) => {
+//       if (err) reject(err);
+//       else resolve(script);
+//     });
+//   });
+// };
+
+// console.log(loadScriptPromise);
+
+/* _______________________________ */
+
+async function f() {
+  return "fella";
+}
+
+f().then((result) => console.log(result));
+
+console.log(f());
+console.log(Promise.resolve("Mia"));
+console.log(Promise.prototype);

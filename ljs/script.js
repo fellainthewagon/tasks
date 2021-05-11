@@ -2167,12 +2167,197 @@ console.log(cat.eats); */
 
 /* _______________________________ */
 
-async function f() {
-  return "fella";
+// async function f() {
+//   return "fella";
+// }
+
+// f().then((result) => console.log(result));
+
+// console.log(f());
+// console.log(Promise.resolve("Mia"));
+// console.log(Promise.prototype);
+
+/* _______________________________ */
+
+/* const url = "https://jsonplaceholder.typicode.com/users/1";
+
+async function loadJSON(url) {
+  try {
+    let response = await fetch(url);
+    let data = await response.json();
+    return data;
+  } catch {
+    throw new Error(response.status);
+  }
 }
 
-f().then((result) => console.log(result));
+loadJSON(url); */
 
-console.log(f());
-console.log(Promise.resolve("Mia"));
-console.log(Promise.prototype);
+// loadJSON("https://jsonplaceholder.typicode.com/users/1")
+//   .then((res) => console.log(res))
+//   .catch((err) => console.log(err));
+
+/* _______________________________ */
+
+// const Person = {
+//   fname: "Fname",
+//   lname: "Lname",
+//   getFullname() {
+//     return `${this.fname} ${this.lname}`;
+//   },
+// };
+
+// const person = Object.create(Person);
+
+// person.fname = "Mia";
+// person.lname = "Walles";
+
+// const User = Object.create(Person);
+// User.email = "";
+// User.pass = "";
+// User.getEmail = function () {
+//   return this.email;
+// };
+
+// const user = Object.create(User);
+// user.fname = "Vincent";
+// user.lname = "Vega";
+// user.email = "vincent@tut.by";
+// user.pass = "jeeez";
+
+// const Customer = {
+//   plan: "trial",
+// };
+// Customer.setPremium = function () {
+//   this.plan = "premium";
+// };
+
+// User.customer = Customer;
+
+// user.customer.setPremium();
+// console.log(Customer);
+
+// const user2 = Object.create(User);
+// console.log(
+//   user2.__proto__,
+//   user2.__proto__.__proto__,
+//   user2.__proto__.__proto__.__proto__
+// );
+// console.log(user2.customer);
+
+/* _______________________________ */
+
+// let range = {
+//   A: 47,
+//   B: 82,
+
+//   // [Symbol.iterator]() {
+//   //   return {
+//   //     curr: this.A,
+//   //     last: this.B,
+
+//   //     next() {
+//   //       if (this.curr <= this.last) {
+//   //         return { done: false, value: this.curr++ };
+//   //       } else {
+//   //         return { done: true };
+//   //       }
+//   //     },
+//   //   };
+//   // },
+
+//   *[Symbol.iterator]() {
+//     for (let value = this.A; value <= this.B; value++) yield value;
+//   },
+// };
+
+// console.log([...range]);
+
+/* _______________________________ */
+
+// function* generateS(start, end) {
+//   for (let i = start; i <= end; i++) yield i;
+// }
+
+// function* generateAll() {
+//   yield* generateS(48, 57);
+//   yield* generateS(65, 90);
+//   yield* generateS(97, 122);
+// }
+
+// let str = "";
+
+// for (let code of generateAll()) {
+//   str += String.fromCharCode(code);
+// }
+
+// console.log(str);
+
+/* _______________________________ */
+
+// function* pseudoGen(seed) {
+//   let value = seed;
+
+//   while (true) {
+//     value = (value * 16807) % 2147483647;
+//     yield value;
+//   }
+// }
+
+// const gen = pseudoGen(3);
+// console.log(gen.next().value);
+// console.log(gen.next().value);
+// console.log(gen.next().value);
+// console.log(gen.next().value);
+// console.log(gen.next().value);
+
+/* _______________________________ */
+
+// let range = {
+//   A: 45,
+//   B: 67,
+
+//   [Symbol.asyncIterator]() {
+//     return {
+//       curr: this.A,
+//       last: this.B,
+
+//       async next() {
+//         await new Promise((resolve) => setTimeout(resolve, 1000));
+
+//         if (this.curr <= this.last) {
+//           return { done: false, value: this.curr++ };
+//         } else {
+//           return { done: true };
+//         }
+//       },
+//     };
+//   },
+// };
+
+// (async () => {
+//   for await (let value of range) {
+//     console.log(value);
+//   }
+// })();
+
+/* _______________________________ */
+
+// async function* generatorAsync(start, end) {
+//   for (let i = start; i <= end; i++) {
+//     await new Promise((resolve) => setTimeout(resolve, 1000));
+//     yield i;
+//   }
+// }
+
+// let generator = generatorAsync(33, 44);
+// (async () => {
+//   for await (let value of generator) {
+//     console.log(value);
+//   }
+// })();
+// (async () => {
+//   console.log(await generator.next());
+// })();
+
+/* _______________________________ */

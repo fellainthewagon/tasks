@@ -2361,3 +2361,306 @@ loadJSON(url); */
 // })();
 
 /* _______________________________ */
+
+// function fetchSequentially(urls) {
+//   const bodies = [];
+
+//   function fetchOne(url) {
+//     return fetch(url)
+//       .then((response) => response.json())
+//       .then((body) => {
+//         bodies.push(body);
+//       });
+//   }
+
+//   let p = Promise.resolve(undefined);
+
+//   for (url of urls) {
+//     fetchOne(url);
+//   }
+//   return p.then(() => bodies);
+// }
+
+// const urls = [
+//   "https://jsonplaceholder.typicode.com/users",
+//   "https://jsonplaceholder.typicode.com/posts",
+// ];
+
+// console.log(fetchSequentially(urls).then((bodies) => console.log(bodies)));
+
+/* _______________________________ */
+
+// function promiseSequence(inputs, promiseMaker) {
+//   inputs = [...inputs];
+
+//   function handleNextInput(outputs) {
+//     if (inputs.length === 0) {
+//       return outputs;
+//     } else {
+//       let nextInput = inputs.shift();
+//       return promiseMaker(nextInput)
+//         .then((output) => outputs.concat(output))
+//         .then(handleNextInput);
+//     }
+//   }
+
+//   return Promise.resolve([]).then(handleNextInput);
+// }
+
+// function fetchBody(url) {
+//   return fetch(url).then((r) => r.json());
+// }
+
+// const urls = [
+//   "https://jsonplaceholder.typicode.com/users",
+//   "https://jsonplaceholder.typicode.com/posts",
+// ];
+
+// promiseSequence(urls, fetchBody).then((bodies) => console.log(bodies));
+
+/* _______________________________ */
+
+// function waiter(duration) {
+//   return new Promise((resolve, reject) => {
+//     if (duration < 0) {
+//       reject(new Error(":("));
+//     }
+//     setTimeout(resolve, duration);
+//   });
+// }
+
+// waiter(1000).then(() => console.log(`i am promise`));
+
+/* _______________________________ */
+
+// const THRESHOLD_A = 8;
+
+// function example1(resolve, reject) {
+//   try {
+//     setTimeout(function () {
+//       let randomNum = new Date();
+//       let num = randomNum % 10;
+//       try {
+//         if (num >= THRESHOLD_A) {
+//           throw new Error(`Too large: ${num}`);
+//         }
+//       } catch (mes) {
+//         reject(`Error in callback: ${mes}`);
+//       }
+
+//       resolve(num);
+//       console.log(num);
+//       return;
+//     }, 1000);
+//     // throw new Error("Bad setup");
+//   } catch (err) {
+//     resolve(`Error during setup: ${err}`);
+//   }
+//   return;
+// }
+
+// function example2(value) {
+//   const isOdd = value % 2 ? true : false;
+//   const parityInfo = { theNumber: value, isOdd: isOdd };
+//   console.log(parityInfo);
+//   return parityInfo;
+// }
+
+// function example3(reason) {
+//   console.error(`Trouble getting number: ${reason}`);
+//   throw -999;
+// }
+
+// function example4(parityInfo) {
+//   // The "tetheredGetWord()" function gets "parityInfo" as closure variable.
+//   const tetheredGetWord = function (resolve, reject) {
+//     const theNumber = parityInfo.theNumber;
+//     const threshold_B = THRESHOLD_A - 1;
+//     if (theNumber >= threshold_B) {
+//       reject(`Still too large: ${theNumber}`);
+//     } else {
+//       parityInfo.wordEvenOdd = parityInfo.isOdd ? "odd" : "even";
+//       resolve(parityInfo);
+//     }
+//     return;
+//   };
+//   return new Promise(tetheredGetWord);
+// }
+
+// new Promise(example1)
+//   .then(example2, example3)
+//   .then(example4)
+//   .then((info) => {
+//     console.log(`Got: ${info.theNumber} - ${info.wordEvenOdd}`);
+//     return info;
+//   })
+//   .catch((reason) => {
+//     if (reason === -999) {
+//       console.error("Had previously handled error");
+//     } else {
+//       console.error(`Trouble with example4(): ${reason}`);
+//     }
+//   })
+//   .finally(() => console.log("All done"));
+
+/* _______________________________ */
+
+// const hash = () => {
+//   const data = {};
+//   Object.defineProperty(data, "add", {
+//     enumerable: false,
+//     value(key, value) {
+//       data[key] = value;
+//       return data;
+//     },
+//   });
+//   return data;
+// };
+
+// const fella = hash();
+// fella.add("name", "Fella").add("girlfriend", "Mia").add("friend", "Vincent");
+// console.log(fella);
+
+/* _______________________________ */
+
+// const add = function (x) {
+//   return function (y) {
+//     return x + y;
+//   };
+// };
+
+/* const add = (x) => (y) => x + y;
+console.log(add(1)(99)); */
+
+/* _______________________________ */
+
+// const log = (base, n) => Math.log(n) / Math.log(base);
+
+// const lg = log.bind(null, 10);
+// const ln = log.bind(null, Math.E);
+
+// console.log(lg(100), ln(100));
+
+/* _______________________________ */
+
+// const curry =
+//   (fn) =>
+//   (...args) => {
+//     if (fn.length > args.length) {
+//       const f = fn.bind(null, ...args);
+//       return curry(f);
+//     } else {
+//       return fn(...args);
+//     }
+//   };
+
+// const sum4 = (a, b, c, d) => a + b + c + d;
+
+// const func = curry(sum4);
+// console.log(func(1, 2, 3)(4));
+// console.log(func(1, 2)(3, 4));
+// console.log(func(1)(2, 3, 4));
+// console.log(func(1, 2, 3, 4));
+
+/* _______________________________ */
+
+// const add = (a, b) => a + b;
+// const sum = (a, b, callback) => callback(a + b);
+
+// sum(47, 53, console.log.bind(null, "Use sum: "));
+
+/* _______________________________ */
+
+// const curry = (fn, ...par) => {
+//   const curried = (...arg) =>
+//     fn.length > arg.length ? curry(fn.bind(null, ...arg)) : fn(...arg);
+//   return par.length ? curried(...par) : curried;
+// };
+
+// const fn = () => {
+//   console.log("I'm here!");
+// };
+
+// const setTimeoutCallbackLast = (ms, fn) => setTimeout(fn, ms);
+// const timer = curry(setTimeoutCallbackLast);
+// const timer2000ms = timer(2000);
+
+// timer2000ms(fn);
+
+/* _______________________________ */
+
+// const iterate = (arr, listener) => {
+//   for (let item of arr) {
+//     listener(item);
+//   }
+// };
+
+// arrCity = ["London", "Berlin", "Prague"];
+
+// const print = (i) => console.log(i);
+
+// iterate(arrCity, print);
+
+/* _______________________________ */
+
+// const summator = (initialValue) => {
+//   let value = initialValue;
+
+//   const add = (delta) => {
+//     value += delta;
+//     if (value >= add.maxValue) add.maxEvent(value);
+//     return add;
+//   };
+
+//   add.max = (max, event) => {
+//     add.maxValue = max;
+//     add.maxEvent = event;
+//     return add;
+//   };
+
+//   return add;
+// };
+
+// const maxReached = (value) => {
+//   console.log("max value reached, value: " + value);
+// };
+
+// const res = summator(10).max(100, maxReached);
+
+// console.log(res(50)(50));
+
+/* _______________________________ */
+
+// let dictionary = {
+//   France: "Paris",
+//   Germany: "Berlin",
+//   Russia: "Moscow",
+// };
+
+// dictionary = new Proxy(dictionary, {
+//   get(target, prop) {
+//     if (prop in target) {
+//       return target[prop];
+//     }
+//     return prop;
+//   },
+// });
+
+// console.log(dictionary.France);
+// console.log(dictionary.Belarus);
+
+/* _______________________________ */
+
+const delay = (f, ms) => {
+  return function () {
+    setTimeout(() => f.apply(this, arguments), ms);
+  };
+};
+
+function sayHi(val) {
+  console.log("Hi " + val);
+}
+
+sayHi = delay(sayHi, 2000);
+
+sayHi("Fella");

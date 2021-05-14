@@ -2651,16 +2651,129 @@ console.log(add(1)(99)); */
 
 /* _______________________________ */
 
-const delay = (f, ms) => {
-  return function () {
-    setTimeout(() => f.apply(this, arguments), ms);
-  };
-};
+// const delay = (f, ms) => {
+//   return function () {
+//     setTimeout(() => f.apply(this, arguments), ms);
+//   };
+// };
 
-function sayHi(val) {
-  console.log("Hi " + val);
-}
+// function sayHi(val) {
+//   console.log("Hi " + val);
+// }
 
-sayHi = delay(sayHi, 2000);
+// sayHi = delay(sayHi, 2000);
 
-sayHi("Fella");
+// sayHi("Fella");
+
+/* _______________________________ */
+
+// const text = (s = "") => ({
+//   line: (a) => text(s + "\n" + a),
+//   toString: () => s,
+// });
+
+// const txt = text("Moscow").line("Minsk").line("Brest");
+// console.log(txt + "");
+
+/* _______________________________ */
+
+// const text = (
+//   s = "",
+//   o = {
+//     line: (a) => ((s += "\n" + a), o),
+//     toString: () => s,
+//   }
+// ) => o;
+
+// const txt = text("Moscow").line("Minsk").line("Brest").line("Prague");
+// console.log(`${txt}`);
+
+/* _______________________________ */
+
+// const sleep = (ms) => {
+//   const end = new Date().getTime() + ms;
+//   while (new Date().getTime() < end);
+// };
+
+// sleep(2000);
+// console.log("Hi");
+
+/* _______________________________ */
+
+// const sleepPromise = (ms) =>
+//   new Promise((resolve) => {
+//     setTimeout(resolve, ms);
+//   });
+
+// (async () => {
+//   console.log(new Date().toISOString());
+//   await sleepPromise(2000);
+//   console.log(new Date().toISOString());
+// })();
+
+/* _______________________________ */
+
+// console.log(document.body.children[1].constructor.name);
+// console.dir(document.body.children[1]);
+// console.log(document.body.children[2].tagName);
+// console.log(document.body.children[2].innerHTML);
+// console.log(document.body.children[2].lastElementChild.innerHTML);
+// console.log(
+//   (document.body.children[2].innerHTML +=
+//     "Dolorem ipsam dolores officiis eaque culpa, provident itaque minus accusantium!")
+// );
+// console.log(document.body.children[2].textContent);
+// console.log(document.body.childNodes[1].data);
+
+// console.log(hid);
+// setInterval(() => {
+//   hid.hidden = !hid.hidden;
+// }, 1000);
+
+// const img = document.querySelector("img");
+// console.log(img.attributes);
+// console.log(img.getAttribute("src"));
+
+// const children = document.body.children;
+// console.log([...children].filter((ch) => ch.tagName === "DIV"));
+
+// let input = document.querySelector("input");
+
+// input.setAttribute("value", "Fella");
+// input.value = "Vincent";
+// console.log(input.getAttribute("value"));
+
+/* _______________________________ */
+
+// const f1 = (x) => x * x;
+// const f2 = (x) => ++x;
+
+// const compose =
+//   (...funcs) =>
+//   (x) =>
+//     funcs.reduce((acc, func) => func(acc), x);
+
+// const f3 = compose(f1, f2);
+
+// console.log(f3 + "\n" + f3(10));
+
+/* _______________________________ */
+
+// const f1 = (x) => `Fella ${x}`;
+// const f2 = (x) => x + ` the wagon`;
+
+// const compose =
+//   (...funcs) =>
+//   (x) =>
+//     funcs.reduce((acc, func) => func(acc), x);
+
+// const f3 = compose(f1, f2);
+
+// console.log(f3("in"));
+
+/* _______________________________ */
+
+let boo = hid.cloneNode(true);
+boo.firstElementChild.innerText = "Fella in The Wagon";
+boo.lastElementChild.innerText = "dabooodeeedaboooodai";
+document.querySelector(".start").after(boo);

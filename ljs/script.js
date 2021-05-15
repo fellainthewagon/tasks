@@ -2773,7 +2773,123 @@ console.log(add(1)(99)); */
 
 /* _______________________________ */
 
-let boo = hid.cloneNode(true);
-boo.firstElementChild.innerText = "Fella in The Wagon";
-boo.lastElementChild.innerText = "dabooodeeedaboooodai";
-document.querySelector(".start").after(boo);
+// let boo = hid.cloneNode(true);
+// boo.firstElementChild.innerText = "Fella in The Wagon";
+// boo.lastElementChild.innerText = "dabooodeeedaboooodai";
+// document.querySelector(".start").after(boo);
+
+/* _______________________________ */
+
+// const partial =
+//   (fn, ...args) =>
+//   (...rest) =>
+//     fn(...args, ...rest);
+
+// const projection = (fields, obj) =>
+//   Object.keys(obj)
+//     .filter((field) => fields.includes(field))
+//     .reduce((hash, key) => ((hash[key] = obj[key]), hash), {});
+
+// const users = [
+//   {
+//     name: "Leanne Graham",
+//     email: "Sincere@april.biz",
+//     city: "Gwenborough",
+//   },
+//   {
+//     name: "Ervin Howell",
+//     email: "Shanna@melissa.tv",
+//     city: "Wisokyburgh",
+//   },
+//   {
+//     name: "Clementine Bauch",
+//     email: "Nathan@yesenia.net",
+//     city: "McKenziehaven",
+//   },
+//   {
+//     name: "Patricia Lebsack",
+//     email: "Julianne.OConner@kory.org",
+//     city: "South Elvis",
+//   },
+//   {
+//     name: "Chelsey Dietrich",
+//     email: "Lucio_Hettinger@annie.ca",
+//     city: "Roscoeview",
+//   },
+// ];
+
+// const p1 = partial(projection, ["name", "city"]);
+// const p2 = partial(projection, ["email"]);
+
+// const data = users.map(p1);
+// console.log(data);
+// const data2 = users.map(p2);
+// console.log(data2);
+
+/* _______________________________ */
+
+// const projection = (meta) => {
+//   const keys = Object.keys(meta);
+
+//   return (obj) => {
+//     const hash = {};
+
+//     keys.forEach((key) => {
+//       const [field, func] = meta[key];
+//       const val = obj[field];
+//       hash[key] = func ? func(val) : val;
+//     });
+
+//     return hash;
+//   };
+// };
+
+// const users = [
+//   {
+//     name: "Leanne Graham",
+//     email: "Sincere@april.biz",
+//     city: "Gwenborough",
+//     born: 1975,
+//   },
+//   {
+//     name: "Ervin Howell",
+//     email: "Shanna@melissa.tv",
+//     city: "Wisokyburgh",
+//     born: 1990,
+//   },
+//   {
+//     name: "Clementine Bauch",
+//     email: "Nathan@yesenia.net",
+//     city: "McKenziehaven",
+//     born: 1974,
+//   },
+//   {
+//     name: "Patricia Lebsack",
+//     email: "Julianne.OConner@kory.org",
+//     city: "South Elvis",
+//     born: 1992,
+//   },
+//   {
+//     name: "Chelsey Dietrich",
+//     email: "Lucio_Hettinger@annie.ca",
+//     city: "Roscoeview",
+//     born: 1984,
+//   },
+// ];
+
+// const md = {
+//   name: ["name"],
+//   place: ["city", (s) => `<${s.toUpperCase()}>`],
+//   age: [
+//     "born",
+//     (y) => new Date().getFullYear() - new Date(y + "").getFullYear(),
+//   ],
+// };
+
+// const p1 = projection(md);
+// console.log(p1);
+
+// const data = users.map(p1);
+// console.dir(data);
+
+/* _______________________________ */

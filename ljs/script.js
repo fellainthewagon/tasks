@@ -2893,3 +2893,148 @@ console.log(add(1)(99)); */
 // console.dir(data);
 
 /* _______________________________ */
+
+// const mainElemW = document.documentElement.clientWidth;
+// const mainElemH = document.documentElement.clientHeight;
+// console.log(mainElemH + "\n" + mainElemW);
+
+// const windowW = window.innerWidth;
+// const windowH = window.innerHeight;
+// console.log(windowH + "\n" + windowW);
+
+/* _______________________________ */
+
+// const obj = {
+//   color: "red",
+//   material: "sand",
+//   true: false,
+//   false: 0,
+//   body: "",
+//   foo: undefined,
+
+//   has(key) {
+//     /*     return typeof this[key] === "boolean"
+//       ? true
+//       : this[key] === 0
+//       ? true
+//       : !!this[key]; */
+
+//     return key in this;
+//   },
+// };
+
+// console.log(obj.has("foo"));
+// console.log([...Object.keys(obj)]);
+// console.log([...Object.values(obj)]);
+
+/* _______________________________ */
+
+// function getURL(url, callback) {
+//   const xhr = new XMLHttpRequest();
+//   xhr.open("GET", url, true);
+//   xhr.responseType = "json";
+//   xhr.addEventListener("load", function () {
+//     if (xhr.status < 400) callback([xhr.status, xhr.response]);
+//     else callback(null, new Error("Reques failed " + xhr.statusText));
+//   });
+//   xhr.addEventListener("error", function () {
+//     callback(null, new Error("Network error"));
+//   });
+//   xhr.send();
+// }
+
+// getURL(
+//   "https://jsonplaceholder.typicode.com/todos/1",
+//   function (response, error) {
+//     if (error) console.log("Failed to fetch nonsense.txt");
+//     else console.log(...response);
+//   }
+// );
+
+/* _______________________________ */
+
+// function get(url) {
+//   return new Promise(function (resolve, reject) {
+//     const xhr = new XMLHttpRequest();
+//     xhr.open("GET", url, true);
+//     xhr.responseType = "json";
+//     xhr.addEventListener("load", function () {
+//       if (xhr.status < 400) resolve(xhr.response);
+//       else reject(new Error("Reques failed " + xhr.statusText));
+//     });
+//     xhr.addEventListener("error", function () {
+//       reject(new Error("Network error"));
+//     });
+//     xhr.send();
+//   });
+// }
+
+// get("https://jsonplaceholder.typicode.com/users")
+//   .then((response) => console.log(response))
+//   .catch((error) => console.log(error));
+
+/* _______________________________ */
+
+// function binary(arr, search) {
+//   let left = 0,
+//     right = arr.length - 1;
+
+//   while (left < right) {
+//     const mid = Math.floor((left + right) / 2);
+
+//     if (search <= arr[mid]) {
+//       right = mid;
+//     } else {
+//       left = mid + 1;
+//     }
+//   }
+//   return arr[right] === search ? right : -1;
+// }
+
+// console.log(binary([2, 5, 6, 8, 9, 12, 45, 79, 234], 12));
+
+/* _______________________________ */
+
+// function bubbleSort(arr) {
+//   for (let i = 0; i < arr.length - 1; i++) {
+//     for (let j = 0; j < arr.length - 1; j++) {
+//       if (arr[j] > arr[j + 1]) {
+//         let swap = arr[j];
+//         arr[j] = arr[j + 1];
+//         arr[j + 1] = swap;
+//       }
+//     }
+//   }
+//   return arr;
+// }
+
+// console.log(bubbleSort([35, 67, 2, 5, 90, 45, 14, 67, 345, 6, 36, 8, 23, 93]));
+
+/* _______________________________ */
+
+// const merge = (arrFirst, arrSecond) => {
+//   const arrSort = [];
+//   let i = (j = 0);
+
+//   while (i < arrFirst.length && j < arrSecond.length) {
+//     arrSort.push(arrFirst[i] < arrSecond[j] ? arrFirst[i++] : arrSecond[j++]);
+//   }
+
+//   return [...arrSort, ...arrFirst.slice(i), ...arrSecond.slice(j)];
+// };
+
+// const mergeSort = (arr) => {
+//   if (arr.length <= 1) {
+//     return arr;
+//   }
+
+//   const mid = Math.floor(arr.length / 2);
+//   const arrL = arr.slice(0, mid);
+//   const arrR = arr.slice(mid);
+
+//   return merge(mergeSort(arrL), mergeSort(arrR));
+// };
+
+// console.log(mergeSort([35, 67, 2, 5, 90, 45, 14, 67, 345, 6, 36, 8, 23, 93]));
+
+/* _______________________________ */

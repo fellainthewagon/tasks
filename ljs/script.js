@@ -3038,3 +3038,30 @@ console.log(add(1)(99)); */
 // console.log(mergeSort([35, 67, 2, 5, 90, 45, 14, 67, 345, 6, 36, 8, 23, 93]));
 
 /* _______________________________ */
+
+// function op(x, y) {
+//   x = 0;
+//   return (x ||= y);
+// }
+// console.log(op(5, 7));
+
+// function op2(x, y) {
+//   x = 0;
+//   return (x &&= y);
+// }
+// console.log(op2(5, 7));
+
+/* _______________________________ */
+
+function Node(prev, data) {
+  this.prev = prev;
+  this.data = data;
+}
+
+const n1 = new Node(null, { name: "first" });
+const n2 = new Node(n1, { name: "second" });
+const n3 = new Node(n2, { name: "third" });
+const n4 = new Node(n3, { name: "fourth" });
+
+console.dir(n1);
+console.dir(n3);
